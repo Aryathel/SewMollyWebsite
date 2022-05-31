@@ -7,3 +7,7 @@ migrations/
 *.sh
 *.bat
 *.json
+
+passenger_wsgi.py
+*.log
+tmp/
