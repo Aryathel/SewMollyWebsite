@@ -1,5 +1,5 @@
 {% extends "parent.html" %}
-{% from "_auth.html" import login, login_button, auth_styles, login_script, signup_script, signup %}
+{% from "_auth.html" import login, login_button, auth_styles, login_script, signup_script, signup with context %}
 {% block title %}{{ title }}{% endblock %}
 {% block extrahead %}{{auth_styles()}}{% endblock %}
 {% block content %}

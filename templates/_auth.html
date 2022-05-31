@@ -25,14 +25,14 @@
                             </div>
                             <div class="w-100 text-right">
                                 <p class="social-media d-flex justify-content-end">
-                                    <a href="#"
+                                    <a href="{{ google_auth }}"
                                        class="social-icon btn d-flex align-items-center justify-content-center">
                                         <i class="fa-brands fa-google"></i>
                                     </a>
                                 </p>
                             </div>
                         </div>
-                        <form action="{{ url_for('home') }}?source=signup" method="post" class="login-form">
+                        <form action="{{ url_for('main.home') }}?source=signup" method="post" class="login-form">
                             {{ form.hidden_tag() }}
                             {{ render_field(form.username, "mb-3 text-left", placeholder="Username") }}
                             {{ render_field(form.email, "mb-3 text-left", placeholder="Email") }}
@@ -74,14 +74,14 @@
                             </div>
                             <div class="w-100 text-right">
                                 <p class="social-media d-flex justify-content-end">
-                                    <a href="#"
+                                    <a href="{{ google_auth }}"
                                        class="social-icon btn d-flex align-items-center justify-content-center">
                                         <i class="fa-brands fa-google"></i>
                                     </a>
                                 </p>
                             </div>
                         </div>
-                        <form action="{{ url_for('home') }}?source=login" method="post" class="login-form">
+                        <form action="{{ url_for('main.home') }}?source=login" method="post" class="login-form">
                             {{ form.hidden_tag() }}
                             {{ render_field(form.username, "mb-3 text-left", placeholder="Username") }}
                             {{ render_field(form.password, "mb-3 text-left", placeholder="Password") }}

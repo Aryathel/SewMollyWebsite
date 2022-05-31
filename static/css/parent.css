@@ -1,13 +1,20 @@
-/* Theme */
+/********** Global Styles **********/
 :root {
     --cream: #FBF8F1;
     --cream-fade: rgba(251, 248, 241, 0.2);
-    --dark: #303030;
+    --dark: #333;
+    --little-less-dark: #444;
     --light-purple: #E3BEC6;
     --light-grey: #D1D1D1;
     --pastel-purple: #655D8A;
     --pastel-green: #CEE5D0;
     --muddy-green: #ADC2A9;
+}
+
+code {
+    background-color: var(--little-less-dark);
+    padding: .1rem;
+    border-radius: .1rem;
 }
 
 /********** Buttons **********/

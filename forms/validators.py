@@ -12,16 +12,18 @@ def user(*, exists: bool = True):
     def check_user(form, field):
         name_or_email = field.data
 
-        user_from_name = User.query.filter_by(username=name_or_email).first()
-        if not exists and user_from_name is not None:
-            raise ValidationError(error.format("username"))
+        user_from_name = User.get_by_name(name_or_email)
+        user_from_email = User.get_by_email(name_or_email)
 
-        user_from_email = User.query.filter_by(email=name_or_email).first()
-        if not exists and user_from_email is not None:
-            raise ValidationError(error.format("email"))
+        if not exists:
+            if user_from_name is not None:
+                raise ValidationError(error.format("username"))
+            elif user_from_email is not None:
+                raise ValidationError(error.format("email"))
 
-        if exists and not user_from_name and not user_from_email:
-            raise ValidationError(error.format("username or email"))
+        else:
+            if not user_from_name and not user_from_email:
+                raise ValidationError(error.format("username or email"))
 
         return True
 
