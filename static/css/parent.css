@@ -1,0 +1,152 @@
+/* Theme */
+:root {
+    --cream: #FBF8F1;
+    --cream-fade: rgba(251, 248, 241, 0.2);
+    --dark: #303030;
+    --light-purple: #E3BEC6;
+    --light-grey: #D1D1D1;
+    --pastel-purple: #655D8A;
+    --pastel-green: #CEE5D0;
+    --muddy-green: #ADC2A9;
+}
+
+/********** Buttons **********/
+/* Global */
+.btn, .form-control {
+    transition: all .15s ease-in-out;
+}
+.btn:focus, .btn:active,
+.form-control:focus, .form-control:active,
+.btn-check:focus + .btn,
+.btn-check:active + .btn {
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion) {
+    .btn, .form-control {
+        transition: none;
+        -webkit-transition: none;
+    }
+}
+
+/* Close Button
+ *
+ * Usually for modals */
+.close-btn {
+    font-size: 25px;
+    color: var(--cream);
+}
+.close-btn:hover {
+    font-size: 27px;
+    color: var(--cream);
+    transform: translate(1%, 2%);
+}
+
+/* Cream Button */
+.btn.btn-cream {
+    border: 1px solid var(--cream);
+    background: var(--cream);
+    color: var(--dark);
+}
+.btn.btn-cream:hover,
+.btn.btn-cream:active,
+.btn.btn-cream:focus {
+    border: 1px solid var(--white);
+    background: var(--white);
+}
+/* Cream Outline Button */
+.btn.btn-outline-cream {
+    border: 1px solid var(--cream);
+    background: transparent;
+    color: var(--cream);
+}
+.btn.btn-outline-cream:hover,
+.btn.btn-outline-cream:active,
+.btn.btn-outline-cream:focus {
+    background: var(--cream);
+    color: var(--dark);
+}
+
+/* Pastel Green Button */
+.btn.btn-pastel-green {
+    border: 1px solid var(--pastel-green);
+    background: var(--pastel-green);
+    color: var(--white);
+}
+.btn.btn-pastel-green:hover,
+.btn.btn-pastel-green:focus,
+.btn.btn-pastel-green:active {
+    border: 1px solid var(--muddy-green);
+    background: var(--muddy-green);
+    color: var(--white);
+}
+/* Pastel Green Outline Button */
+.btn.btn-outline-pastel-green {
+    border: 1px solid var(--pastel-green);
+    background: transparent;
+    color: var(--pastel-green);
+}
+.btn.btn-outline-pastel-green:hover,
+.btn.btn-outline-pastel-green:focus,
+.btn.btn-outline-pastel-green:active {
+    background: var(--pastel-green);
+    color: var(--dark);
+}
+
+/********** Button Check **********/
+/* Change icon based on whether the button is checked. */
+.btn-check:checked + label::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f14a";
+    font-weight: 900;
+    margin-right: 10px;
+}
+.btn-check:not(:checked) + label::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f0c8";
+    font-weight: 900;
+    margin-right: 10px;
+    color: var(--light-grey);
+}
+
+.btn-check + label {
+    opacity: 0.8;
+    color: var(--white);
+}
+.btn-check:hover + label {
+    opacity: 1;
+}
+
+/********** Modals **********/
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 750px;
+        width: 75%;
+    }
+}
+
+/********** Forms **********/
+/* Remove margin from last element in a form. */
+.form-footer {
+    margin-bottom: 0;
+}
+.form-footer .btn {
+    margin-bottom: 0;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding-top: 1.55rem;
+    width: 3rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--dark);
+}
+
+.form-warning {
+    color: var(--bs-danger);
+    font-weight: 600;
+}

@@ -1,0 +1,160 @@
+/********** Login/Signup Specific Styles **********/
+/* General */
+.login {
+    padding: 0;
+}
+.auth-modal {
+    background: none;
+    border: none;
+}
+
+/* Button Styling */
+.close-btn {
+    position: absolute;
+    top: 4px;
+    right: 2px;
+    line-height: 28px;
+}
+
+.login .btn-submit {
+    height: 45px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    padding: 8px 20px;
+}
+
+.login .btn-toggle {
+    font-size: 1rem;
+    border-radius: 1.5rem;
+    padding: 10px 20px;
+}
+
+.login .btn-check + label {
+    color: var(--pastel-purple);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Password Recovery */
+.pass-recovery a {
+    color: var(--gray);
+    padding-left: 0;
+    padding-right: 0;
+}
+.pass-recovery a:hover {
+    text-decoration: none;
+    color: var(--pastel-green);
+}
+
+/* Auth Welcome */
+.login-welcome {
+    position: relative;
+    background: var(--pastel-purple);
+    background: linear-gradient(135deg, var(--pastel-purple) 0%, var(--light-purple) 100%);
+    background: -webkit-linear-gradient(135deg, var(--pastel-purple) 0%, var(--light-purple) 100%);
+    width: 100%;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+@media (min-width: 768px) {
+    .login-welcome {
+        width: 45%;
+        border-radius: 0rem 1rem 1rem 0rem;
+    }
+}
+.login-welcome .text h2 {
+    color: var(--white);
+    font-weight: 900;
+}
+
+/********** Auth Form **********/
+/* General */
+.login-wrap {
+    background-color: var(--white);
+    width: 100%;
+    padding: 2rem;
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+@media (min-width: 576px) {
+    .login-wrap {
+        padding: 2.5rem;
+    }
+}
+@media (min-width: 768px) {
+    .login-wrap {
+        width: 55%;
+        padding: 3rem;
+        border-radius: 1rem 0rem 0rem 1rem;
+    }
+}
+.login-wrap h3 {
+    font-weight: 300;
+    margin-top: 0.2rem;
+    color: var(--pastel-purple);
+}
+/* Footers */
+.login .form-footer {
+    display: block;
+}
+.login .form-footer .text-center {
+    width: 100%;
+}
+@media (min-width: 450px) {
+    .login .form-footer .text-center {
+        width: 50%;
+    }
+    .login .form-footer {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+}
+
+/* Socials */
+.social-media {
+    position: relative;
+    width: 100%;
+}
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--light-purple);
+    opacity: 0.8;
+    font-size: 16px;
+    margin-right: 5px;
+    border-radius: 50%;
+    color: var(--light-purple);
+}
+.social-icon:hover {
+    border: 1px solid transparent;
+    background: var(--light-purple);
+    color: var(--white);
+    text-decoration: none;
+    outline: none;
+    opacity: 1;
+}
+/* Input */
+.form-group .label {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: var(--light-purple);
+    font-weight: 700;
+}
+.login-input {
+    height: 48px;
+    background: var(--light-grey);
+    border: 1px solid transparent;
+    font-size: 1rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 2rem;
+    opacity: 0.8;
+}
+.login-input:focus, .login-input:active {
+    background: var(--light-purple);
+    border: 1px solid transparent;
+    color: var(--white);
+    opacity: 1;
+}

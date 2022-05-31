@@ -1,0 +1,134 @@
+{% from "_utils.html" import render_field, render_button, modal_redirect, render_footer, password_toggle_script, flashed_messages %}
+
+{% macro signup(form) %}
+<div class="modal fade" id="signup" tabindex="-1" aria-labelledby="signupTitle" aria-hidden="True">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal">
+            <div class="col login">
+                <div class="wrap d-md-flex w-100">
+                    <div class="login-welcome text-center d-flex align-items-center order-md-last">
+                        <div class="text w-100 mb-3 mt-3">
+                            <h2>Welcome!</h2>
+                            <p>Already have an account?</p>
+                            {{ modal_redirect("login", "Log In", "btn-outline-cream btn-toggle") }}
+                        </div>
+                        <div>
+                            <button class="btn close-btn" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="login-wrap">
+                        <div class="d-flex">
+                            <div class="w-100 text-left">
+                                <h3 class="mb-4" id="signupTitle">Sign Up</h3>
+                            </div>
+                            <div class="w-100 text-right">
+                                <p class="social-media d-flex justify-content-end">
+                                    <a href="#"
+                                       class="social-icon btn d-flex align-items-center justify-content-center">
+                                        <i class="fa-brands fa-google"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <form action="{{ url_for('home') }}?source=signup" method="post" class="login-form">
+                            {{ form.hidden_tag() }}
+                            {{ render_field(form.username, "mb-3 text-left", placeholder="Username") }}
+                            {{ render_field(form.email, "mb-3 text-left", placeholder="Email") }}
+                            {{ render_field(form.password, "mb-3 text-left", placeholder="Password") }}
+                            {{ render_field(form.confirm, "mb-3 text-left", placeholder="Confirm Password") }}
+                            {{ render_button(form.submit, "btn-submit btn-pastel-green") }}
+                            {{ render_footer([form.remember_me], width="w-100") }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro login(form) %}
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginTitle" aria-hidden="True">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content auth-modal">
+            <div class="col login">
+                <div class="wrap d-md-flex w-100">
+                    <div class="login-welcome text-center d-flex align-items-center order-md-last">
+                        <div class="text w-100 mb-3 mt-3">
+                            <h2>Welcome!</h2>
+                            <p>Don't have an account?</p>
+                            {{ modal_redirect("signup", "Sign Up", "btn-outline-cream btn-toggle") }}
+                        </div>
+                        <div>
+                            <button class="btn close-btn" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="login-wrap">
+                        <div class="d-flex">
+                            <div class="w-100 text-left">
+                                <h3 class="mb-4" id="loginTitle">Log In</h3>
+                            </div>
+                            <div class="w-100 text-right">
+                                <p class="social-media d-flex justify-content-end">
+                                    <a href="#"
+                                       class="social-icon btn d-flex align-items-center justify-content-center">
+                                        <i class="fa-brands fa-google"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <form action="{{ url_for('home') }}?source=login" method="post" class="login-form">
+                            {{ form.hidden_tag() }}
+                            {{ render_field(form.username, "mb-3 text-left", placeholder="Username") }}
+                            {{ render_field(form.password, "mb-3 text-left", placeholder="Password") }}
+                            {{ render_button(form.submit, "btn-submit btn-pastel-green") }}
+                            {{ render_footer([form.remember_me, "password_recovery"]) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro login_script(form, show_modal) %}
+<!-- Login Form Script -->
+<script>
+    {{ password_toggle_script(form.password) }}
+    {% if show_modal %}
+    window.addEventListener('DOMContentLoaded', (event) => {
+      $('#login').toggleClass('fade');
+      $('#login').modal('show');
+      $('#login').toggleClass('fade');
+    });
+    {% endif %}
+</script>
+{% endmacro %}
+
+{% macro signup_script(form, show_modal) %}
+<!-- Sign Up Form Script -->
+<script>
+    {{ password_toggle_script(form.password) }}
+    {{ password_toggle_script(form.confirm) }}
+    {% if show_modal %}
+    window.addEventListener('DOMContentLoaded', (event) => {
+      $('#signup').toggleClass('fade');
+      $('#signup').modal('show');
+      $('#signup').toggleClass('fade');
+    });
+    {% endif %}
+</script>
+{% endmacro %}
+
+{% macro login_button(classes) %}
+<button class="btn {{classes}}" data-bs-target="#login" data-bs-toggle="modal">Log In</button>
+{% endmacro %}
+
+{% macro auth_styles() %}
+<link rel="stylesheet" type="text/css" href="/static/css/auth.css">
+{% endmacro %}

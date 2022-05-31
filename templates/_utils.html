@@ -1,0 +1,107 @@
+{% macro flashed_messages() %}
+{% with msgs = get_flashed_messages() %}
+{% if msgs %}
+<ul>
+    {% for msg in msgs %}
+    <li>{{ msg }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{% endmacro %}
+
+{% macro password_toggle(id) %}
+<i class="fa-solid fa-eye password-toggle" id="{{id}}-toggle"></i>
+{% endmacro %}
+
+{% macro render_field(field, div_classes, placeholder) %}
+<div class="form-group row {{div_classes}}" {% if field.type == "PasswordField" %}style="position: relative;"{% endif %}>
+    {{ field.label(class="label")|safe }}
+    {{ field(class="form-control login-input", placeholder=placeholder)|safe }}
+    {% if field.type == "PasswordField" %}
+    {{password_toggle(field.id)}}
+    {% endif %}
+</div>
+{% if field.errors %}
+<div class="row text-left form-text form-warning">
+    {% for error in field.errors %}
+    <p>{{ error }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro render_button(field, classes) %}
+<div class="form-group row">
+    {{ field(class="form-control btn " + classes)|safe }}
+</div>
+{% endmacro %}
+
+{% macro render_checkbox(field, width) %}
+<div class="text-center {{width}}">
+    {{ field(class="btn-check")|safe }}
+    {{ field.label(class="btn")|safe }}
+</div>
+{% endmacro %}
+
+{% macro password_recovery(content="Forgot Password?") %}
+<div class="text-center pass-recovery">
+    <a href="#" class="btn">{{content}}</a>
+</div>
+{% endmacro %}
+
+{% macro render_footer(fields, width) %}
+<div class="form-group form-footer">
+    {% for field in fields %}
+    {% if field.type == "BooleanField" %}
+    {{render_checkbox(field, width)}}
+    {% elif field == "password_recovery" %}
+    {{password_recovery()}}
+    {% else %}
+    {{render_field(field)}}
+    {% endif %}
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_modal(id, title=None, body=None, footer=None, centered=True) %}
+<div class="modal fade" id="{{ id }}" tabindex="-1" {% if title %}aria-labelledby="{{ id }}Title"{% endif %} aria-hidden="True">
+    <div class="modal-dialog {% if centered %}modal-dialog-centered{% endif %}">
+        <div class="modal-content">
+            {% if title %}
+            <div class="modal-header">
+                <h3 class="modal-title" id="{{ id }}Title">{{ title }}</h3>
+                <button class="btn close-btn" type="button" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            {% endif %}
+            <div class="modal-body">
+                {% if body %}{{ body }}{% endif %}
+            </div>
+            {% if footer %}
+            <div class="modal-footer justify-content-center">
+                {{ footer }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro modal_redirect(target, message, classes) %}
+<button class="btn {{classes}}" data-bs-target="#{{ target }}" data-bs-toggle="modal">{{ message }}</button>
+{% endmacro %}
+
+{% macro password_toggle_script(field) %}
+const toggle_{{field.name}} = document.querySelector("#{{field.id}}-toggle");
+const {{field.name}} = document.querySelector("#{{field.id}}");
+
+toggle_{{field.name}}.addEventListener("click", function() {
+    const type = {{field.name}}.getAttribute("type") === "password" ? "text" : "password";
+    {{field.name}}.setAttribute("type", type);
+
+    this.classList.toggle("fa-eye");
+    this.classList.toggle("fa-eye-slash");
+});
+{% endmacro %}
