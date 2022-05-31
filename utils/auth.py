@@ -1,3 +1,4 @@
+import os
 from typing import Dict, Any, List
 
 from flask import session, abort, request, url_for
@@ -20,7 +21,7 @@ class Google:
     ]
 
     def __init__(self):
-        self.client_id = "603461165172-jo4917v82pu7lsc0du6fah017tmcbvsr.apps.googleusercontent.com"
+        self.client_id = os.getenv('GOOGLE_CLIENT_ID')
 
     @property
     def initialized(self) -> bool:
