@@ -8,6 +8,16 @@ from google_auth_oauthlib.flow import Flow
 import google.auth.transport.requests
 
 
+def _verify_initialization(func):
+    def decorator(cls: 'Google', *args, **kwargs):
+        if not cls.initialized:
+            cls.initialize()
+
+        return func(cls, *args, **kwargs)
+
+    return decorator
+
+
 class Google:
     flow: Flow
     client_id: str
@@ -33,16 +43,6 @@ class Google:
             scopes=self._scopes,
             redirect_uri=url_for('users.callbacks.google_login', _external=True)
         )
-
-    @staticmethod
-    def _verify_initialization(func):
-        def decorator(cls: 'Google', *args, **kwargs):
-            if not cls.initialized:
-                cls.initialize()
-
-            return func(cls, *args, **kwargs)
-
-        return decorator
 
     @_verify_initialization
     def get_redirect(self):
