@@ -49,7 +49,7 @@ class Google:
     def get_redirect(self):
         auth_url, state = self.flow.authorization_url()
         session['state'] = state
-        session['callback'] = request.url
+        session['callback'] = request.url.split('?')[0]
         return auth_url
 
     @_verify_initialization
