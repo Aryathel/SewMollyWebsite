@@ -1,4 +1,7 @@
+from dotenv import load_dotenv
 from blueprints import App
+
+load_dotenv()
 
 app = App(__name__)
 
