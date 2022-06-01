@@ -13,13 +13,13 @@ class UserModel(UserMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(), nullable=False)
-    email = db.Column(db.String(), unique=True, nullable=False)
-    _password = db.Column(db.String())
+    username = db.Column(db.String(64), nullable=False)
+    email = db.Column(db.String(64), unique=True, nullable=False)
+    _password = db.Column(db.String(64))
     authenticated = db.Column(db.Boolean, default=False, nullable=False)
     remember_me = db.Column(db.Boolean, default=False, nullable=False)
-    google_token = db.Column(db.String())
-    icon = db.Column(db.String())
+    google_token = db.Column(db.String(128))
+    icon = db.Column(db.String(128))
     default_name = db.Column(db.Boolean)
 
     def __init__(
