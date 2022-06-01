@@ -55,9 +55,7 @@ code {
     background: var(--cream);
     color: var(--dark);
 }
-.btn.btn-cream:hover,
-.btn.btn-cream:active,
-.btn.btn-cream:focus {
+.btn.btn-cream:hover {
     border: 1px solid var(--white);
     background: var(--white);
 }
@@ -67,9 +65,7 @@ code {
     background: transparent;
     color: var(--cream);
 }
-.btn.btn-outline-cream:hover,
-.btn.btn-outline-cream:active,
-.btn.btn-outline-cream:focus {
+.btn.btn-outline-cream:hover {
     background: var(--cream);
     color: var(--dark);
 }
@@ -80,9 +76,7 @@ code {
     background: var(--pastel-green);
     color: var(--white);
 }
-.btn.btn-pastel-green:hover,
-.btn.btn-pastel-green:focus,
-.btn.btn-pastel-green:active {
+.btn.btn-pastel-green:hover {
     border: 1px solid var(--muddy-green);
     background: var(--muddy-green);
     color: var(--white);
@@ -93,9 +87,7 @@ code {
     background: transparent;
     color: var(--pastel-green);
 }
-.btn.btn-outline-pastel-green:hover,
-.btn.btn-outline-pastel-green:focus,
-.btn.btn-outline-pastel-green:active {
+.btn.btn-outline-pastel-green:hover {
     background: var(--pastel-green);
     color: var(--dark);
 }
