@@ -16,12 +16,14 @@ SchemeType = TypeVar('SchemeType', bound='Scheme')
 class Scheme(Blueprint, Framework):
     app: Optional[AppType] = None
     children: Optional[List[Type[SchemeType]]] = None
+    parent: Optional[SchemeType] = None
     url_prefix: str = None
     options: dict[str, Any] = {}
 
-    def __init__(self, app: AppType, /, *args, children: Optional[List[Type[SchemeType]]] = None, **kwargs):
+    def __init__(self, app: AppType, /, *args, children: Optional[List[Type[SchemeType]]] = None, parent: Optional[SchemeType] = None, **kwargs):
         self.app = app
         self.children = children
+        self.parent = parent
 
         if not self.name:
             self.name = args[0]
@@ -57,10 +59,13 @@ class Scheme(Blueprint, Framework):
 
         if self.children is not None:
             for child in self.children:
-                setattr(self.app, child.name, child(self))
+                setattr(self.app, child.name, child(self.app, parent=self))
                 print(getattr(self.app, child.name))
 
-        self.app.register_blueprint(self, url_prefix=self.url_prefix)
+        if self.parent:
+            self.parent.register_blueprint(self, url_prefix=self.url_prefix)
+        else:
+            self.app.register_blueprint(self, url_prefix=self.url_prefix)
 
     def _register_routes(self) -> None:
         cls: Type[Scheme] = self.__class__
@@ -77,6 +82,7 @@ class Route(Framework):
     options: Dict[str, Any] = {}
 
     def __init__(self, blueprint: Scheme, route: str = None, endpoint: str = None, **kwargs) -> None:
+        print(blueprint.app)
         self.app = blueprint.app
         self.blueprint = blueprint
         if route:

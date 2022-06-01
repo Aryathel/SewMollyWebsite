@@ -14,11 +14,11 @@ from ._framework import Scheme, Route
 
 # ---------- Validators ----------
 class HomeQuery(BaseModel):
-    class _SourceOpts(Enum):
+    class SourceOpts(Enum):
         login = "login"
         signup = "signup"
 
-    source: Optional[_SourceOpts]
+    source: Optional[SourceOpts]
 
 
 # ---------- Blueprint ----------
@@ -37,7 +37,7 @@ class Main(Scheme, name="main", module=__name__):
             login_form = LoginForm()
             signup_form = SignupForm()
             print(query.source)
-            if query.source == 'login':
+            if query.source == HomeQuery.SourceOpts.login:
                 if login_form.validate_on_submit():
                     self.app.users.login(login_form)
                     return redirect(url_for('main.home'))
@@ -50,7 +50,7 @@ class Main(Scheme, name="main", module=__name__):
                     signup_form=signup_form,
                     show_login=True
                 )
-            elif query.source == 'signup':
+            elif query.source == HomeQuery.SourceOpts.signup:
                 if signup_form.validate_on_submit():
                     self.app.users.signup(signup_form)
                     return redirect(url_for('main.home'))
