@@ -23,7 +23,7 @@ class Google:
     client_id: str
     _initialized: bool = False
 
-    _client_secrets_file: str = "google_secret.json"
+    _client_secrets_file: str = os.getenv('GOOGLE_SECRETS_FILE')
     _scopes: List[str] = [
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
