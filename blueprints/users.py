@@ -90,7 +90,7 @@ class Users(Scheme, name="users", module=__name__):
 
         token = self.app.ts.dumps(user.email, salt='email-confirm-key')
         confirm_url = url_for(
-            'callbacks.email_confirmation',
+            'users.callbacks.email_confirmation',
             _external=True
         ) + f'?token={token}'
 
