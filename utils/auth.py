@@ -21,9 +21,9 @@ def _verify_initialization(func):
 class Google:
     flow: Flow
     client_id: str
-    _initialized: bool = False
 
-    _client_secrets_file: str = os.getenv('GOOGLE_SECRETS_FILE')
+    _client_secrets_file: str
+    _initialized: bool = False
     _scopes: List[str] = [
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
@@ -31,6 +31,7 @@ class Google:
     ]
 
     def __init__(self):
+        self._client_secrets_file = os.getenv('GOOGLE_SECRETS_FILE')
         self.client_id = os.getenv('GOOGLE_CLIENT_ID')
 
     @property
